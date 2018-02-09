@@ -12,17 +12,22 @@
         <Row class="image-list"  >
             <VmImageInfo></VmImageInfo>
        </Row>
+       <Row>
+           <VmImageMall></VmImageMall>
+       </Row>
     </div>
 </template>
 
 <script>
   import VmImageInfo from '@/components/vm-image-info'
   import VmSearch from '@/components/vm-search'
+  import VmImageMall from '@/components/vm-image-mall'
   export default {
     name: 'cmpMall',
     components: {
       VmImageInfo,
-      VmSearch
+      VmSearch,
+      VmImageMall
     },
     methods: {
         search:function(){
