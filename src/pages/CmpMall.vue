@@ -12,8 +12,13 @@
         <Row class="image-list"  >
             <VmImageInfo></VmImageInfo>
        </Row>
-       <Row>
+       <!-- <Row>
            <VmImageMall></VmImageMall>
+       </Row> -->
+       <Row>
+        <Col  v-for="item in 2" :key="item.id" >
+              <VmImageMall ></VmImageMall>
+        </Col>
        </Row>
     </div>
 </template>
