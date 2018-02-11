@@ -1,15 +1,23 @@
 <template>
   <div class="basic-table vm-margin">
-    <VmTable title="Basic Table" :columns="dataColumns" :data="dataTable"></VmTable>
+
+      <div>
+        <VmShortcutTable title="请选择比价数据" type="edit"  :columns="dataInitColumns" :data="dataInitTable"></VmShortcutTable>
+      </div>
+      <div class="basic-table vm-margin">
+        <VmShortcutTable title="比价结果" :columns="dataColumns" :data="dataTable"></VmShortcutTable>
+      </div>
+
   </div>
+  
 </template>
 
 <script>
-  import VmTable from '@/components/vm-table'
+  import VmShortcutTable from '@/components/vm-shortcut-table'
   export default {
     name: 'BasicTable',
     components: {
-      VmTable
+      VmShortcutTable
     },
     data () {
       return {
@@ -116,154 +124,195 @@
             id: '65416843154',
             name: '王小明',
             age: 18,
-            address: '北京市朝阳区芍药居',
-            address2: '北京市朝阳区芍药居',
-            address3: '北京市朝阳区芍药居',
-            address4: '北京市朝阳区芍药居',
-            address5: '北京市朝阳区芍药居',
-            address6: '北京市朝阳区芍药居',
-            address7: '北京市朝阳区芍药居',
-            address8: '北京市朝阳区芍药居',
-            address9: '北京市朝阳区芍药居',
-            address10: '北京市朝阳区芍药居',
-            address11: '北京市朝阳区芍药居',
-            address12: '北京市朝阳区芍药居',
-            address13: '北京市朝阳区芍药居'
+            address: '17.34',
+            address2: '17.34',
+            address3: '17.34',
+            address4: '17.34',
+            address5: '17.34',
+            address6: '17.34',
+            address7: '17.34',
+            address8: '17.34',
+            address9: '17.34',
+            address10: '17.34',
+            address11: '17.34',
+            address12: '17.34',
+            address13: '17.34'
           },
           {
             id: '65416843654',
             name: '张小刚',
             age: 25,
-            address: '北京市海淀区西二旗',
-            address2: '北京市朝阳区芍药居',
-            address3: '北京市朝阳区芍药居',
-            address4: '北京市朝阳区芍药居',
-            address5: '北京市朝阳区芍药居',
-            address6: '北京市朝阳区芍药居',
-            address7: '北京市朝阳区芍药居',
-            address8: '北京市朝阳区芍药居',
-            address9: '北京市朝阳区芍药居',
-            address10: '北京市朝阳区芍药居',
-            address11: '北京市朝阳区芍药居',
-            address12: '北京市朝阳区芍药居',
-            address13: '北京市朝阳区芍药居'
+            address: '红色',
+            address2: '17.34',
+            address3: '17.34',
+            address4: '17.34',
+            address5: '17.34',
+            address6: '17.34',
+            address7: '17.34',
+            address8: '17.34',
+            address9: '17.34',
+            address10: '17.34',
+            address11: '17.34',
+            address12: '17.34',
+            address13: '17.34'
           },
           {
             id: '65416843194',
             name: '李小红',
             age: 30,
-            address: '上海市浦东新区世纪大道',
-            address2: '北京市朝阳区芍药居',
-            address3: '北京市朝阳区芍药居',
-            address4: '北京市朝阳区芍药居',
-            address5: '北京市朝阳区芍药居',
-            address6: '北京市朝阳区芍药居',
-            address7: '北京市朝阳区芍药居',
-            address8: '北京市朝阳区芍药居',
-            address9: '北京市朝阳区芍药居',
-            address10: '北京市朝阳区芍药居',
-            address11: '北京市朝阳区芍药居',
-            address12: '北京市朝阳区芍药居',
-            address13: '北京市朝阳区芍药居'
+            address: '红色',
+            address2: '17.34',
+            address3: '17.34',
+            address4: '17.34',
+            address5: '17.34',
+            address6: '17.34',
+            address7: '17.34',
+            address8: '17.34',
+            address9: '17.34',
+            address10: '17.34',
+            address11: '17.34',
+            address12: '17.34',
+            address13: '17.34'
           },
           {
             id: '65416843150',
             name: '周小伟',
             age: 26,
-            address: '深圳市南山区深南大道',
-            address2: '北京市朝阳区芍药居',
-            address3: '北京市朝阳区芍药居',
-            address4: '北京市朝阳区芍药居',
-            address5: '北京市朝阳区芍药居',
-            address6: '北京市朝阳区芍药居',
-            address7: '北京市朝阳区芍药居',
-            address8: '北京市朝阳区芍药居',
-            address9: '北京市朝阳区芍药居',
-            address10: '北京市朝阳区芍药居',
-            address11: '北京市朝阳区芍药居',
-            address12: '北京市朝阳区芍药居',
-            address13: '北京市朝阳区芍药居'
+            address: '红色',
+            address2: '17.34',
+            address3: '17.34',
+            address4: '17.34',
+            address5: '17.34',
+            address6: '17.34',
+            address7: '17.34',
+            address8: '17.34',
+            address9: '17.34',
+            address10: '17.34',
+            address11: '17.34',
+            address12: '17.34',
+            address13: '17.34'
           },
           {
             id: '65416843150',
             name: '张小刚',
             age: 25,
-            address: '北京市海淀区西二旗',
-            address2: '北京市朝阳区芍药居',
-            address3: '北京市朝阳区芍药居',
-            address4: '北京市朝阳区芍药居',
-            address5: '北京市朝阳区芍药居',
-            address6: '北京市朝阳区芍药居',
-            address7: '北京市朝阳区芍药居',
-            address8: '北京市朝阳区芍药居',
-            address9: '北京市朝阳区芍药居',
-            address10: '北京市朝阳区芍药居',
-            address11: '北京市朝阳区芍药居',
-            address12: '北京市朝阳区芍药居',
-            address13: '北京市朝阳区芍药居'
+            address: '红色',
+            address2: '17.34',
+            address3: '17.34',
+            address4: '17.34',
+            address5: '17.34',
+            address6: '17.34',
+            address7: '17.34',
+            address8: '17.34',
+            address9: '17.34',
+            address10: '17.34',
+            address11: '17.34',
+            address12: '17.34',
+            address13: '17.34'
           },
           {
             id: '65416843114',
             name: '李小红',
             age: 30,
-            address: '上海市浦东新区世纪大道',
-            address2: '北京市朝阳区芍药居',
-            address3: '北京市朝阳区芍药居',
-            address4: '北京市朝阳区芍药居',
-            address5: '北京市朝阳区芍药居',
-            address6: '北京市朝阳区芍药居',
-            address7: '北京市朝阳区芍药居',
-            address8: '北京市朝阳区芍药居',
-            address9: '北京市朝阳区芍药居',
-            address10: '北京市朝阳区芍药居',
-            address11: '北京市朝阳区芍药居',
-            address3: '北京市朝阳区芍药居',
-            address4: '北京市朝阳区芍药居',
-            address5: '北京市朝阳区芍药居',
-            address6: '北京市朝阳区芍药居',
-            address7: '北京市朝阳区芍药居',
-            address8: '北京市朝阳区芍药居',
-            address9: '北京市朝阳区芍药居',
-            address10: '北京市朝阳区芍药居',
-            address11: '北京市朝阳区芍药居',
-            address12: '北京市朝阳区芍药居',
-            address13: '北京市朝阳区芍药居'
+            address: '红色',
+            address2: '17.34',
+            address3: '17.34',
+            address4: '17.34',
+            address5: '17.34',
+            address6: '17.34',
+            address7: '17.34',
+            address8: '17.34',
+            address9: '17.34',
+            address10: '17.34',
+            address11: '17.34',
+            address3: '17.34',
+            address4: '17.34',
+            address5: '17.34',
+            address6: '17.34',
+            address7: '17.34',
+            address8: '17.34',
+            address9: '17.34',
+            address10: '17.34',
+            address11: '17.34',
+            address12: '17.34',
+            address13: '17.34'
           },
           {
             id: '65416843114',
             name: '周小伟',
             age: 26,
-            address: '深圳市南山区深南大道',
-            address2: '北京市朝阳区芍药居',
-            address3: '北京市朝阳区芍药居',
-            address4: '北京市朝阳区芍药居',
-            address5: '北京市朝阳区芍药居',
-            address6: '北京市朝阳区芍药居',
-            address7: '北京市朝阳区芍药居',
-            address8: '北京市朝阳区芍药居',
-            address9: '北京市朝阳区芍药居',
-            address10: '北京市朝阳区芍药居',
-            address11: '北京市朝阳区芍药居',
-            address12: '北京市朝阳区芍药居',
-            address13: '北京市朝阳区芍药居'
+            address: '红色',
+            address2: '17.34',
+            address3: '17.34',
+            address4: '17.34',
+            address5: '17.34',
+            address6: '17.34',
+            address7: '17.34',
+            address8: '17.34',
+            address9: '17.34',
+            address10: '17.34',
+            address11: '17.34',
+            address12: '17.34',
+            address13: '17.34'
           },
           {
             id: '25416843154',
             name: '李小红',
             age: 30,
-            address: '上海市浦东新区世纪大道',
-            address2: '北京市朝阳区芍药居',
-            address3: '北京市朝阳区芍药居',
-            address4: '北京市朝阳区芍药居',
-            address5: '北京市朝阳区芍药居',
-            address6: '北京市朝阳区芍药居',
-            address7: '北京市朝阳区芍药居',
-            address8: '北京市朝阳区芍药居',
-            address9: '北京市朝阳区芍药居',
-            address10: '北京市朝阳区芍药居',
-            address11: '北京市朝阳区芍药居',
-            address12: '北京市朝阳区芍药居',
-            address13: '北京市朝阳区芍药居'
+            address: '红色',
+            address2: '17.34',
+            address3: '17.34',
+            address4: '17.34',
+            address5: '17.34',
+            address6: '17.34',
+            address7: '17.34',
+            address8: '17.34',
+            address9: '17.34',
+            address10: '17.34',
+            address11: '17.34',
+            address12: '17.34',
+            address13: '17.34'
+          }
+        ],
+        dataInitColumns:[
+          {
+            id: '2.140710',
+            title: '产品编号',
+            key: 'id',
+            sortable: true
+          },
+          {
+            id: '2.140711',
+            title: '名称',
+            key: 'name',
+            sortable: true
+          },
+          {
+            id: '2.140712',
+            title: '品牌',
+            key: 'age',
+            sortable: true
+          },
+          {
+            id: '2.140713',
+            title: 'SKU',
+            key: 'sku',
+            sortable: true
+          },
+          {
+            id: '2.140714',
+            title: '历史价格',
+            key: 'hisprice',
+            sortable: true
+          }
+        ],
+        dataInitTable: [
+           {
+            id: '65416843154',
+            name: '王小明',
+            age: '屈臣氏',
+            sku:'红色',
+            hisprice:'121.0'
           }
         ]
       }
