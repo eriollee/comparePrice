@@ -10,7 +10,7 @@
           <i-switch v-model="showStripe" style="margin: 0 30px 0 10px"></i-switch>
           <h3>Size</h3>
           <Radio-group v-model="tableSize" type="button" style="margin-left: 10px">
-            <Radio label="large">Large</Radio>
+            <Radio label="large">Large1</Radio>
             <Radio label="default">Default</Radio>
             <Radio label="small">Small</Radio>
           </Radio-group>
