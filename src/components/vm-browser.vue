@@ -14,6 +14,12 @@
 <script>
 export default {
   name: 'VMBrowser',
+  props: {
+      placeholder: {
+        type: String,
+        default: '请输入..'
+      },
+  },
   data () {
     return {
       iframeState:false,

@@ -2,8 +2,14 @@
     <div class="">
             <Row type="flex" align="middle" justify="space-between" class="panel-body">
                 <div class="search-bar">
-                    <Input placeholder="请输入融e行商品编号 ..."  style="width: 300px"></Input>
-                    <Button type="ghost" @click="search"><i class="fa fa-search"></i></Button>
+                    <Form ref="formInline" :model="formInline" :rules="ruleInline" inline>
+                        <FormItem prop="search">
+                            <Input type="text"  number v-model="formInline.search" :placeholder="placeholder" style="width: 300px"></Input>
+                        </FormItem>
+                        <FormItem>
+                            <Button type="ghost" @click="search('formInline')" ><i class="fa fa-search"></i></Button>
+                        </FormItem>
+                    </Form>
                  </div>
             </Row>
     </div>
@@ -12,13 +18,35 @@
 <script>
   export default {
     name: 'search',
+    props: {
+        placeholder: {
+            type: String,
+            default: '请输入...'
+        }
+    },
     methods: {
-        search:function(){
-            console.log("1111111");
+        search:function(name){
+            this.$refs[name].validate((valid) => {
+                    if (valid) {
+                        this.$emit('transfer',this.formInline.search)
+                    } else {
+                        this.$Message.error('编号不正确');
+                    }
+            })
         }
     },
     data: function () {
       return {
+        value:"",
+        formInline: {
+                search: ''
+            },
+        ruleInline: {
+                search: [
+                     {required: true, message: '融e行编号不能为空'},  
+                     {type: 'number', message: '融e行编号必须为数字'}  
+                ]
+            }
       }
     }
   }
