@@ -47,7 +47,7 @@
     data: function () {
       return {
           imageInfoShow:false,
-          imageMallShow:false,
+          imageMallShow:true,
           dataInfoTable: {
             code: 0, 
             msg: '返回成功', 
@@ -90,11 +90,11 @@
                                     [
                                     {
                                         value:'大号',
-                                        index:'0',
+                                        index:'aa',
                                     },
                                     {
                                         value:'小号',
-                                        index:'1',
+                                        index:'bb',
                                     }
                                     
                                     ]
@@ -105,11 +105,11 @@
                                     [
                                     {
                                         value:'红色',
-                                        index:'0',
+                                        index:'cc',
                                     },
                                     {
                                         value:'蓝色',
-                                        index:'1',
+                                        index:'dd',
                                     }
                                     
                                     ]
