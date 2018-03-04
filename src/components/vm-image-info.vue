@@ -7,7 +7,12 @@
         <Row type="flex" justify="center" align="top" class="panel-body">
             <Card >
                 <Col span="8"  class="vm-info-img" >
-                            <img  :src="img"  alt="" >
+                         <a v-if="priceImg != ''"  :href="dataInfo.detailList.mall.url" target="view_window">  
+                            <img   :src="priceImg"    >
+                        </a> 
+                         <a  v-else   :href="dataInfo.detailList.mall.url" target="view_window">  
+                            <img  :src="dataInfo.detailList.mall.imgUrl"    >
+                        </a> 
                         <!-- <Card  class="vm-info-img">
                         <p>标题：工e行-与爱同行 宝家丽 床宝星舰VH-01 高端杀菌除螨仪 一机两用 有效除螨吸尘</p>
                         </Card> -->
@@ -134,7 +139,8 @@
                     return value.index ==  this.priceIndexValue
                 });
                 this.price = priceList[priceIndex].price;
-                console.log( this.price);
+                this.priceImg = priceList[priceIndex].imgUrl;
+                console.log(this.priceImg );
             }
 
             
@@ -144,9 +150,6 @@
         },
 
     },
-    created () {
-        console.log(this.dataInfo.detailList.mall.SKU.typeList)
-    },
     mounted () {
     },
     data: function () {
@@ -154,6 +157,7 @@
           priceIndexValue:"",//价格索引
           priceIndexArr:[],//价格的数组
           price:"",//价格
+          priceImg:"",//价格图片
       }
     }
   }
