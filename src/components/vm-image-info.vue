@@ -18,12 +18,19 @@
                             <p>商品品牌：{{dataInfo.detailList.mall.brand}} </p>
                             <p>商品名称：{{dataInfo.detailList.mall.name}}</p>
                             <p>销量：{{dataInfo.detailList.mall.sales}}笔</p>
-                            <p>价格：￥{{dataInfo.detailList.mall.price}}</p>
+                            <p>价格：￥
+                                <span v-if="price != ''">
+                                {{price}}
+                                </span>
+                                <span v-else>
+                                {{dataInfo.detailList.mall.price}}
+                                </span>
+                            </p>
                         </div>
                         <div>
                             <div style="margin-top:5px" v-for="(item,index) in dataInfo.detailList.mall.SKU.typeList" :key=item.id>
                                 <p>{{dataInfo.detailList.mall.SKU.typeList[index].type}} :
-                                <RadioGroup v-model="dataInfo.detailList.mall.SKU.typeList[index].defaultValue" type="button"  @on-change='change_status(item,index,dataInfo.detailList.mall.SKU.typeList.length)'>
+                                <RadioGroup v-model="dataInfo.detailList.mall.SKU.typeList[index].defaultValue" type="button"  @on-change='change_status(item,index,dataInfo.detailList.mall.SKU.typeList.length,dataInfo.detailList.mall.SKU.priceList)'>
                                     <Radio v-for="(item) in dataInfo.detailList.mall.SKU.typeList[index].typeValue" :label="item.value" :key=item.id  >
                                     </Radio> 
                                 </RadioGroup>
@@ -68,6 +75,7 @@
 </template>
 
 <script>
+  import Vue from 'vue'
   import VmSearch from '@/components/vm-search'
   export default {
     name: 'imageInfo',
@@ -97,15 +105,41 @@
             console.log(page)
             console.log(imageInfo)
         },
-        change_status: function(item,index,length){  // 筛选状态
-            console.log(length)
-            // 找到选项所在索引 
+        change_status: function(item,index,length,priceList){  // 筛选状态
+          //  console.log(length)
+            // 找到SKU选项所在索引 
             let itemIndex = item.typeValue.findIndex((value, index, arr) => {
                 return value.value ==  item.defaultValue
             });
 
-            //找到选项所在索引的json中的index
-            console.log(item.typeValue[itemIndex].index);
+            //找到SKU选项所在索引的json中的index
+            //console.log(item.typeValue[itemIndex].index);
+
+            Vue.set(this.priceIndexArr, index, item.typeValue[itemIndex].index);
+            console.log(this.priceIndexArr);
+            let priceIndexTmp = "";
+
+            //所有数组都填充后进行赋值
+            if(this.priceIndexArr.length == length&&!this.priceIndexArr.includes(undefined)){
+                for (let i = 0; i < length; i++) {
+                    if(i==(length-1)){
+                        priceIndexTmp += this.priceIndexArr[i]; 
+                    }else{
+                        priceIndexTmp += this.priceIndexArr[i]+"|"; 
+                    }
+                }
+                this.priceIndexValue = priceIndexTmp;
+                console.log(this.priceIndexValue); 
+                let priceIndex = priceList.findIndex((value, index, arr) => {
+                    return value.index ==  this.priceIndexValue
+                });
+                this.price = priceList[priceIndex].price;
+                console.log( this.price);
+            }
+
+            
+            
+ 
    
         },
 
@@ -117,8 +151,9 @@
     },
     data: function () {
       return {
-          button1: '大号',
-          button2: '红色'
+          priceIndexValue:"",//价格索引
+          priceIndexArr:[],//价格的数组
+          price:"",//价格
       }
     }
   }

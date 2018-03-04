@@ -68,19 +68,19 @@
                             priceList:[
                             {
                                 price:'12.00',
-                                index:'00',
+                                index:'aa|cc',
                             },
                             {
                                 price:'15.00',
-                                index:'10',
+                                index:'aa|dd',
                             },
                             {
                                 price:'20.00',
-                                index:'01',
+                                index:'bb|cc',
                             },
                             {
                                 price:'24.00',
-                                index:'11',
+                                index:'bb|dd',
                             }
                             ],
                             typeList:[
