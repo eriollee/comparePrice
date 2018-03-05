@@ -1,22 +1,19 @@
 <template>
     <div class="vm-image-list">
         <Row class="image-list-heading vm-panel">
-            <VmSearch placeholder="请输入融e购产品编号.." @transfer="getSearchValue"></VmSearch>
+            <VmSearch ruleInline="mallRule" placeholder="请输入融e购产品编号.." @transfer="getSearchValue"></VmSearch>
         </Row>
         <Row class="image-list"  >
             <transition name="fade">
-                <VmImageInfo :dataInfo="dataInfoTable" v-if="imageInfoShow" ></VmImageInfo>
+                <VmImageInfo :dataInfo="dataInfoTable" v-if="imageInfoShow" @transfer="getCompareValue" ></VmImageInfo>
             </transition>
         </Row>
-
-       <!-- <Row>
-           <VmImageMall></VmImageMall>
-       </Row> -->
-       <Row>
-            <Col  v-for="item in 2" :key="item.id" >
-                <VmImageMall v-show="imageMallShow"></VmImageMall>
+            <transition name="slide-fade">
+                <VmImageMall :comparePrice="comparePrice" :compareList="compareList" v-show="imageMallShow"></VmImageMall>
+                </transition>
             </Col>
-       </Row>
+      
+      
     </div>
 </template>
 
@@ -34,10 +31,16 @@
     methods: {
         search:function(){
             console.log(this.dataInfoTable.detailList.mall.title);
+            console.log(this.compareList);
         },
         getSearchValue:function(msg){
             console.log(msg);
             this.imageInfoShow = true;
+        },
+        getCompareValue:function(msg,price){
+            console.log(msg);
+            this.imageMallShow = true;
+            this.comparePrice = price;
         },
     },
     mounted () {
@@ -47,11 +50,12 @@
     data: function () {
       return {
           imageInfoShow:false,
-          imageMallShow:true,
+          imageMallShow:false,
+          comparePrice:'',
           dataInfoTable: {
             code: 0, 
             msg: '返回成功', 
-                detailList: {
+            detailList: {
                     mall:
                     {
                         id:'9000158140',
@@ -124,7 +128,113 @@
                         }
                     }
                 }
-            }
+            },
+            compareList:
+              {
+                code: 0, 
+                msg: "返回成功", 
+                detailList: {
+                        otherList:
+                        [
+                        {
+                        
+                                brand:"天猫",
+                                total:5,
+                                goodList:
+                                [
+                                    {
+                                        id:"4866934",
+                                        sales:1000,
+                                        price:"1.00",
+                                        imgScore:"95",
+                                        imgUrl:"http://img.alicdn.com/imgextra/i1/725677994/TB2E1a2XaAoBKNjSZSyXXaHAVXa_!!725677994.jpg_430x430q90.jpg",
+                                        url:"http://chaoshi.detail.tmall.com/item.htm?spm=a3204.11139429.3183446685.1.40abaf00yKAsKL&id=40567573038"
+                                    },
+                                    {
+                                        id:"4866935",
+                                        sales:1000,
+                                        price:"100.00",
+                                        imgScore:"95",
+                                        imgUrl:"http://img.alicdn.com/imgextra/i1/725677994/TB2E1a2XaAoBKNjSZSyXXaHAVXa_!!725677994.jpg_430x430q90.jpg",
+                                        url:"http://chaoshi.detail.tmall.com/item.htm?spm=a3204.11139429.3183446685.1.40abaf00yKAsKL&id=40567573038"
+                                    },
+                                    {
+                                        id:"4866936",
+                                        sales:1000,
+                                        price:"12.00",
+                                        imgScore:"95",
+                                        imgUrl:"http://img.alicdn.com/imgextra/i1/725677994/TB2E1a2XaAoBKNjSZSyXXaHAVXa_!!725677994.jpg_430x430q90.jpg",
+                                        url:"http://chaoshi.detail.tmall.com/item.htm?spm=a3204.11139429.3183446685.1.40abaf00yKAsKL&id=40567573038"
+                                    },
+                                    {
+                                        id:"4866937",
+                                        sales:1000,
+                                        price:"12.00",
+                                        imgScore:"95",
+                                        imgUrl:"http://img.alicdn.com/imgextra/i1/725677994/TB2E1a2XaAoBKNjSZSyXXaHAVXa_!!725677994.jpg_430x430q90.jpg",
+                                        url:"http://chaoshi.detail.tmall.com/item.htm?spm=a3204.11139429.3183446685.1.40abaf00yKAsKL&id=40567573038"
+                                    },
+                                    {
+                                        id:"4866938",
+                                        sales:1000,
+                                        price:"12.00",
+                                        imgScore:"95",
+                                        imgUrl:"http://img.alicdn.com/imgextra/i1/725677994/TB2E1a2XaAoBKNjSZSyXXaHAVXa_!!725677994.jpg_430x430q90.jpg",
+                                        url:"http://chaoshi.detail.tmall.com/item.htm?spm=a3204.11139429.3183446685.1.40abaf00yKAsKL&id=40567573038"
+                                    }
+                                ]
+                        },
+                        {
+                                brand:"京东",
+                                total:5,
+                                goodList:
+                                [
+                                    {
+                                        id:"48669341",
+                                        sales:"1000",
+                                        price:"12.00",
+                                        imgScore:"95",
+                                        imgUrl:"https://img14.360buyimg.com/n0/jfs/t10111/323/1631828106/201312/4bcc468c/59e43425N06086806.jpg",
+                                        url:"https://item.jd.com/5396295.html"
+                                    },
+                                    {
+                                        id:"48669342",
+                                        sales:"1000",
+                                        price:"12.00",
+                                        imgScore:"95",
+                                        imgUrl:"https://img14.360buyimg.com/n0/jfs/t10111/323/1631828106/201312/4bcc468c/59e43425N06086806.jpg",
+                                        url:"https://item.jd.com/5396295.html"
+                                    },
+                                    {
+                                        id:"48669343",
+                                        sales:"1000",
+                                        price:"12.00",
+                                        imgScore:"95",
+                                        imgUrl:"https://img14.360buyimg.com/n0/jfs/t10111/323/1631828106/201312/4bcc468c/59e43425N06086806.jpg",
+                                        url:"https://item.jd.com/5396295.html"
+                                    },
+                                    {
+                                        id:"48669344",
+                                        sales:"1000",
+                                        price:"12.00",
+                                        imgScore:"95",
+                                        imgUrl:"https://img14.360buyimg.com/n0/jfs/t10111/323/1631828106/201312/4bcc468c/59e43425N06086806.jpg",
+                                        url:"https://item.jd.com/5396295.html"
+                                    },
+                                    {
+                                        id:"48669345",
+                                        sales:"1000",
+                                        price:"12.00",
+                                        imgScore:"95",
+                                        imgUrl:"https://img14.360buyimg.com/n0/jfs/t10111/323/1631828106/201312/4bcc468c/59e43425N06086806.jpg",
+                                        url:"https://item.jd.com/5396295.html"
+                                    }
+                                ]
+                        },
+                        ]
+                        
+                    }
+                }
       }
     }
   }
@@ -134,6 +244,20 @@
     transition: opacity 1s;
     }
     .fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
+    opacity: 0;
+    }
+
+        /* 可以设置不同的进入和离开动画 */
+    /* 设置持续时间和动画函数 */
+    .slide-fade-enter-active {
+    transition: all .3s ease;
+    }
+    .slide-fade-leave-active {
+    transition: all .8s cubic-bezier(1.0, 0.5, 0.8, 1.0);
+    }
+    .slide-fade-enter, .slide-fade-leave-to
+    /* .slide-fade-leave-active for below version 2.1.8 */ {
+    transform: translateX(10px);
     opacity: 0;
     }
 </style>

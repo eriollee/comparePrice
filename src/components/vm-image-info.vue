@@ -1,9 +1,5 @@
 <template>
   <div class="vm-info-horizantal vm-panel">
-      <!-- <div class="card-img">
-
-           <img :src="img" alt="">
-      </div> -->
         <Row type="flex" justify="center" align="top" class="panel-body">
             <Card >
                 <Col span="8"  class="vm-info-img" >
@@ -42,26 +38,8 @@
                                 </p>
                             </div>
                         </div>
-                        <!-- <div>dataInfo.detailList.mall.SKU.typeList[index].typeValue
-                            <p>大小：
-                             <RadioGroup v-model="button1" type="button"  @on-change='change_status(item)'>
-                                <Radio label="大号"></Radio>
-                                <Radio label="中号"></Radio>
-                                <Radio label="小号"></Radio>
-                            </RadioGroup>
-                            </p>
-                        </div>
-                        <div style="margin-top:5px">
-                            <p>颜色：
-                                <RadioGroup v-model="button2" type="button"  @on-change='change_status(item)'>
-                                    <Radio label="红色"></Radio>
-                                    <Radio label="黄色"></Radio>
-                                    <Radio label="蓝色"></Radio>
-                                </RadioGroup>
-                            </p>
-                        </div> -->
                         <div>
-                            <VmSearch></VmSearch>
+                            <VmSearch :comparePrice="price" ruleInline="compareRule" placeholder="请输入比价关键字.." @transfer="getSearchValue"></VmSearch>
                         </div>
                 </Col>
             </Card>
@@ -76,8 +54,7 @@
     }
 </script>
 
-  </div>
-</template>
+ 
 
 <script>
   import Vue from 'vue'
@@ -86,11 +63,6 @@
     name: 'imageInfo',
     components: {
       VmSearch
-    },
-    on:{
-        'on-change':()=>{
-            console.log("111111")
-        }
     },
     props:{
         type: {
@@ -106,9 +78,9 @@
         },
     },
     methods: {
-        change: function (page) {
-            console.log(page)
-            console.log(imageInfo)
+        getSearchValue:function(value,price){
+            console.log(value+""+price);
+            this.$emit('transfer',value,price);
         },
         change_status: function(item,index,length,priceList){  // 筛选状态
           //  console.log(length)
@@ -121,7 +93,7 @@
             //console.log(item.typeValue[itemIndex].index);
 
             Vue.set(this.priceIndexArr, index, item.typeValue[itemIndex].index);
-            console.log(this.priceIndexArr);
+         //   console.log(this.priceIndexArr);
             let priceIndexTmp = "";
 
             //所有数组都填充后进行赋值
@@ -134,19 +106,17 @@
                     }
                 }
                 this.priceIndexValue = priceIndexTmp;
-                console.log(this.priceIndexValue); 
+        //        console.log(this.priceIndexValue); 
                 let priceIndex = priceList.findIndex((value, index, arr) => {
                     return value.index ==  this.priceIndexValue
                 });
-                this.price = priceList[priceIndex].price;
-                this.priceImg = priceList[priceIndex].imgUrl;
-                console.log(this.priceImg );
+                this.price = priceList[priceIndex].price; 
+                if(priceList[priceIndex].imgUrl != undefined&& priceList[priceIndex].imgUrl != ""){
+                    this.priceImg = priceList[priceIndex].imgUrl;
+                }else{
+                    this.priceImg = dataInfo.detailList.mall.imgUrl; 
+                }
             }
-
-            
-            
- 
-   
         },
 
     },
@@ -158,6 +128,7 @@
           priceIndexArr:[],//价格的数组
           price:"",//价格
           priceImg:"",//价格图片
+          
       }
     }
   }
