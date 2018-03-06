@@ -1,16 +1,16 @@
 <template>
     <div class="">
       <Row class="image-list-heading vm-panel">
-            <VmSearch></VmSearch>
+            <VmSearch ruleInline="advRule" placeholder="请输入活动页网址链接.." @transfer="getSearchValue"></VmSearch>
       </Row>
-      <Row class="image-list-heading vm-panel">
+      <Row class="image-list-heading vm-panel" v-show="iframeState">
         <Tabs value="name1" type="card">
-          <TabPane label="浏览网页" name="name1" icon="social-windows"> 
-            <VMBrowser :placeholder="请输入">  </VMBrowser>
+          <TabPane  label="浏览网页" name="name1" icon="social-windows"> 
+            <VMBrowser :advSource="advUrl" :iframeState="iframeState">  </VMBrowser>
           </TabPane>
           <TabPane label="详情比价" name="name2">
-                  <Col :xs="{ span: 3 }" class="vm-margin col-xs-3" v-for="item in 20" :key="item.id" >
-                        <VmImageMallCard ></VmImageMallCard>
+                  <Col :xs="{ span: 3 }" class="vm-margin col-xs-3"  v-for="(item,index) in compareList.detailList.advList"  :key="item.id" >
+                        <VmImageMallCard :compareInfo="item" ></VmImageMallCard>
                   </Col>
           </TabPane>
         </Tabs>
@@ -31,81 +31,107 @@
       VmImageMallCard
     },
     methods: {
+      getSearchValue:function(msg){
+            this.advUrl = msg;
+            this.iframeState= true;
+            console.log(this.compareList);
+      },
     },
     data: function () {
       return {
-        dataTable: [{
-          code: 0, 
-          msg: '返回成功', 
-            detailList: {
-              mall:
-              {
-                id:'9000158140',
-                title:'塞翁福汇山珍菌菇礼盒swfjg-5',
-                brand:'塞翁福',
-                name:'塞翁福汇山珍菌菇礼盒',
-                sales:'1000',
-                price:'12.00-24.00',
-                imgUrl:'http://image6.mall.icbc.com.cn/image/10018469/1501218781097_3.jpg',
-                url:'http://mall.icbc.com.cn/products/pd_0000912336.jhtml',
-                isSKU:true,
-                SKU:
-                {
-                  priceList:[
-                  {
-                    price:'12.00',
-                    index:'00',
-                  },
-                  {
-                    price:'15.00',
-                    index:'10',
-                  },
-                  {
-                    price:'20.00',
-                    index:'01',
-                  },
-                  {
-                    price:'24.00',
-                    index:'11',
-                  }
-                  ],
-                  typeList:[
-                    {
-                      type:'尺寸',
-                      typeValue:
-                      [
-                        {
-                        value:'大号',
-                        index:'0',
-                        },
-                        {
-                        value:'小号',
-                        index:'1',
-                        }
-                      
-                      ]
-                    },
-                    {
-                      type:'颜色',
-                      typeValue:
-                      [
-                        {
-                        value:'红色',
-                        index:'0',
-                        },
-                        {
-                        value:'蓝色',
-                        index:'1',
-                        }
-                      
-                      ]
-                    }
-                  ]
-                }
+       advUrl:"",
+       iframeState:false,
+       compareList:{
+	      code: 0, 
+	      msg: "返回成功", 
+	      detailList: {
+          total:2,
+          advList:
+          [
+              {				
+                advID:"1312312",
+                advTitle:"Python学习手册",
+                price:"120.00",
+                detailPrice:"120.00",
+                isSame:true,		
+                imgUrl:"https://img14.360buyimg.com/n0/jfs/t10111/323/1631828106/201312/4bcc468c/59e43425N06086806.jpg",
+                url:"https://item.jd.com/5396295.html"
+              },
+              {				
+                advID:"1334342",
+                advTitle:"Python源码剖析",
+                price:"120.00",
+                detailPrice:"130.00",
+                isSame:false,
+                imgUrl:"https://img14.360buyimg.com/n0/jfs/t10111/323/1631828106/201312/4bcc468c/59e43425N06086806.jpg",
+                url:"https://item.jd.com/5396295.html"
+              },
+              {				
+                advID:"1334342",
+                advTitle:"Python源码剖析",
+                price:"120.00",
+                detailPrice:"130.00",
+                isSame:false,
+                imgUrl:"https://img14.360buyimg.com/n0/jfs/t10111/323/1631828106/201312/4bcc468c/59e43425N06086806.jpg",
+                url:"https://item.jd.com/5396295.html"
+              },
+              {				
+                advID:"1334342",
+                advTitle:"Python源码剖析",
+                price:"120.00",
+                detailPrice:"130.00",
+                isSame:false,
+                imgUrl:"https://img14.360buyimg.com/n0/jfs/t10111/323/1631828106/201312/4bcc468c/59e43425N06086806.jpg",
+                url:"https://item.jd.com/5396295.html"
+              },
+              {				
+                advID:"1334342",
+                advTitle:"Python源码剖析",
+                price:"120.00",
+                detailPrice:"130.00",
+                isSame:false,
+                imgUrl:"https://img14.360buyimg.com/n0/jfs/t10111/323/1631828106/201312/4bcc468c/59e43425N06086806.jpg",
+                url:"https://item.jd.com/5396295.html"
+              },
+              {				
+                advID:"1334342",
+                advTitle:"Python源码剖析",
+                price:"120.00",
+                detailPrice:"130.00",
+                isSame:false,
+                imgUrl:"https://img14.360buyimg.com/n0/jfs/t10111/323/1631828106/201312/4bcc468c/59e43425N06086806.jpg",
+                url:"https://item.jd.com/5396295.html"
+              },
+              {				
+                advID:"1334342",
+                advTitle:"Python源码剖析",
+                price:"120.00",
+                detailPrice:"130.00",
+                isSame:false,
+                imgUrl:"https://img14.360buyimg.com/n0/jfs/t10111/323/1631828106/201312/4bcc468c/59e43425N06086806.jpg",
+                url:"https://item.jd.com/5396295.html"
+              },
+              {				
+                advID:"1334342",
+                advTitle:"Python源码剖析",
+                price:"120.00",
+                detailPrice:"130.00",
+                isSame:false,
+                imgUrl:"https://img14.360buyimg.com/n0/jfs/t10111/323/1631828106/201312/4bcc468c/59e43425N06086806.jpg",
+                url:"https://item.jd.com/5396295.html"
+              },
+              {				
+                advID:"1334342",
+                advTitle:"Python源码剖析",
+                price:"120.00",
+                detailPrice:"130.00",
+                isSame:false,
+                imgUrl:"https://img14.360buyimg.com/n0/jfs/t10111/323/1631828106/201312/4bcc468c/59e43425N06086806.jpg",
+                url:"https://item.jd.com/5396295.html"
               }
-            }
-          }
-      ]
+            ]
+      }
+  }
       }
     }
   }

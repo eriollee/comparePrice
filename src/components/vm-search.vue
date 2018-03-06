@@ -40,6 +40,9 @@
             if("compareRule"==this.ruleInline){
                 return this.compareRule;
             }
+            if("advRule"==this.ruleInline){
+                return this.advRule;
+            }
             return '';
         }
     },
@@ -59,6 +62,9 @@
                         }
                         if("compareRule"==this.ruleInline){
                             this.$Message.error('比价关键字输入不能为空!');
+                        }
+                        if("advRule"==this.ruleInline){
+                            this.$Message.error('网址链接输入不能为空!');
                         }
                         
                     }
@@ -83,6 +89,11 @@
         compareRule: {
                 search: [
                      {required: true, message: '比价关键字不能为空!'},  
+                ]
+        },
+        advRule: {
+                search: [
+                     {required: true, message: '网址链接输入不能为空!'},  
                 ]
         }
       }
