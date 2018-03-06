@@ -2,10 +2,10 @@
   <div class="basic-table vm-margin">
 
       <div>
-        <VmShortcutTable title="请选择比价数据" type="edit"  :columns="dataInitColumns" :data="dataInitTable"></VmShortcutTable>
+        <VmShortcutTable title="请选择历史比价数据" type="edit"  :columns="dataInitColumns" :data="dataInitTable" @transfer="getCompareValue" ></VmShortcutTable>
       </div>
       <div class="basic-table vm-margin">
-        <VmShortcutTable title="比价结果" :columns="dataColumns" :data="dataTable"></VmShortcutTable>
+        <VmShortcutTable title="最新比价结果" :columns="dataColumns" :data="dataTable"></VmShortcutTable>
       </div>
 
   </div>
@@ -18,6 +18,29 @@
     name: 'BasicTable',
     components: {
       VmShortcutTable
+    },
+    created () {
+        console.log(this.dataInitList)
+        
+        for(let i = 0;i<this.dataInitList.detailList.advList.length;i++){
+             let dataInit = {};//添加临时对象
+             dataInit.cprID = this.dataInitList.detailList.advList[i].cprID;
+             dataInit.id = this.dataInitList.detailList.advList[i].advID;
+             dataInit.brand = this.dataInitList.detailList.advList[i].brand;
+             dataInit.name = this.dataInitList.detailList.advList[i].title;
+             dataInit.keyword = this.dataInitList.detailList.advList[i].keyword;
+             dataInit.hisPrice = this.dataInitList.detailList.advList[i].hisPrice;
+             dataInit.url = this.dataInitList.detailList.advList[i].url;
+             this.dataInitTable[i] = dataInit;
+              
+        }
+       
+       
+    },
+    methods: {
+      getCompareValue:function(value){
+            console.log(value);
+      },
     },
     data () {
       return {
@@ -37,24 +60,24 @@
           {
             id: '2.140712',
             title: '品牌',
-            key: 'age',
+            key: 'brand',
             sortable: true
           },
           {
             id: '2.140713',
-            title: 'SKU',
+            title: '关键字',
             key: 'address',
             sortable: true
           },
           {
             id: '2.140715',
-            title: '价格',
+            title: '历史价格',
             key: 'address2',
-            sortable: true
+            sortable: true 
           },
           {
             id: '2.140716',
-            title: '当前价格',
+            title: '最新价格',
             key: 'address3',
             sortable: true
           },
@@ -123,7 +146,7 @@
           {
             id: '65416843154',
             name: '王小明',
-            age: 18,
+            brand: 18,
             address: '17.34',
             address2: '17.34',
             address3: '17.34',
@@ -141,7 +164,7 @@
           {
             id: '65416843654',
             name: '张小刚',
-            age: 25,
+            brand: 25,
             address: '红色',
             address2: '17.34',
             address3: '17.34',
@@ -159,7 +182,7 @@
           {
             id: '65416843194',
             name: '李小红',
-            age: 30,
+            brand: 30,
             address: '红色',
             address2: '17.34',
             address3: '17.34',
@@ -177,7 +200,7 @@
           {
             id: '65416843150',
             name: '周小伟',
-            age: 26,
+            brand: 26,
             address: '红色',
             address2: '17.34',
             address3: '17.34',
@@ -195,7 +218,7 @@
           {
             id: '65416843150',
             name: '张小刚',
-            age: 25,
+            brand: 25,
             address: '红色',
             address2: '17.34',
             address3: '17.34',
@@ -213,7 +236,7 @@
           {
             id: '65416843114',
             name: '李小红',
-            age: 30,
+            brand: 30,
             address: '红色',
             address2: '17.34',
             address3: '17.34',
@@ -240,7 +263,7 @@
           {
             id: '65416843114',
             name: '周小伟',
-            age: 26,
+            brand: 26,
             address: '红色',
             address2: '17.34',
             address3: '17.34',
@@ -258,7 +281,7 @@
           {
             id: '25416843154',
             name: '李小红',
-            age: 30,
+            brand: 30,
             address: '红色',
             address2: '17.34',
             address3: '17.34',
@@ -279,7 +302,18 @@
             id: '2.140710',
             title: '产品编号',
             key: 'id',
-            sortable: true
+            sortable: true,
+            render: (h, params) => {
+              console.log(params);
+              console.log("1111");
+              return  h('a',{
+                    on:{
+                        'click':()=>{
+                              window.open(this.dataInitTable[params.index].url);
+                        }
+                    }
+                },this.dataInitTable[params.index].cprID);
+            }
           },
           {
             id: '2.140711',
@@ -290,31 +324,93 @@
           {
             id: '2.140712',
             title: '品牌',
-            key: 'age',
+            key: 'brand',
             sortable: true
           },
           {
             id: '2.140713',
-            title: 'SKU',
-            key: 'sku',
+            title: '关键字',
+            key: 'keyword',
             sortable: true
           },
           {
             id: '2.140714',
             title: '历史价格',
-            key: 'hisprice',
+            key: 'hisPrice',
             sortable: true
           }
         ],
-        dataInitTable: [
+        dataInitTable: [],
+        dataInitTableSample: [
            {
+            cprID:"0000123",
             id: '65416843154',
-            name: '王小明',
-            age: '屈臣氏',
-            sku:'红色',
-            hisprice:'121.0'
+            name: '蒸馏水',
+            brand: '屈臣氏',
+            keyword:'红色',
+            hisPrice:'121.0',
+            url:"https://item.jd.com/5396295.html"
+          },
+          {
+            cprID:"0000123",
+            id: '65416843152',
+            name: '蒸馏水',
+            brand: '屈臣氏',
+            keyword:'红色',
+            hisPrice:'121.0',
+            url:"https://item.jd.com/5396295.html"
+          },
+          {
+            cprID:"0000123",
+            id: '65416843153',
+            name: '蒸馏水',
+            brand: '屈臣氏',
+            keyword:'红色',
+            hisPrice:'121.0',
+            url:"https://item.jd.com/5396295.html"
           }
-        ]
+        ],
+
+      dataInitList:  {
+          code: 0, 
+          msg:"返回成功", 
+          detailList: {
+            total:2,
+            advList:
+            [
+              {				
+                cprID:"0000123",
+                advID:"1312312",
+                brand:"人民教育出版社",
+                title:"Python源码剖析",
+                sales:1000,
+                keyword:"红色",
+                hisPrice:"120.00",
+                url:"https://item.jd.com/5396295.html"
+              },
+              {
+                cprID:"0000124",
+                advID:"1334342",
+                brand:"人民教育出版社",
+                title:"Python源码剖析111",
+                sales:1000,
+                keyword:"蓝色",
+                hisPrice:"140.00",
+                url:"https://item.jd.com/5396295.html"
+              },
+              {
+                cprID:"0000126",
+                advID:"1334342",
+                brand:"人民教育出版社",
+                title:"Python源码剖析111",
+                sales:1000,
+                keyword:"蓝色",
+                hisPrice:"140.00",
+                url:"https://item.jd.com/5396295.html"
+              }
+            ]
+          }
+        }
       }
     }
   }
