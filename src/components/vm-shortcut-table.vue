@@ -10,7 +10,7 @@
           <Button type="ghost" @click="search"><i class="fa fa-search"></i></Button>
         </div>
       </Row>
-      <Table :stripe="showStripe" :size="tableSize" :columns="showColumns" :data="dataShow" @on-selection-change="selectChange"></Table>
+      <Table :stripe="showStripe" :size="tableSize" :columns="showColumns" :data="dataShow" @on-selection-change="selectChange" ></Table>
       <Row type="flex" justify="space-between" class="footer">
         <div class="info-bar">
           显示<Input-number class="input-number" v-model="showNum" :max="data.length" :min="1" @on-change=" updateDataShow ">{{ showNum }}</Input-number>条/ 页
@@ -22,7 +22,7 @@
       </Row>
       <Row type="flex" justify="space-between" class="footer">
         <div class="edit" v-if="type === 'edit'"  size="large">
-            <Button type="primary"> 一键比对</Button>
+            <Button type="primary" @click="compare()"> 一键比对</Button>
         </div>
       </Row>
     </div>
@@ -56,10 +56,14 @@
         dataEdit: {},
         dataDelete: [],
         dataAdd: {},
-        formData: []
+        formData: [],
+        compareList:[]
       }
     },
     methods: {
+      compare:function(){
+        this.$emit('transfer',this.compareList);
+      },
       editOk: function () {
         this.$emit('edit-ok', this.dataEdit)
       },
@@ -92,12 +96,17 @@
         })
       },
       selectChange: function (data) {
+       // console.log(data);
         this.dataDelete = data
+        for(let index in data){
+            this.compareList[index] = data[index].cprID;
+        }
       },
       remove: function (index) {
         this.dataShow.splice(index, 1)
       },
       renderOperate: function (h, params) {
+        console.log(params);
         return h('div', [
           h('Button', {
             props: {
@@ -156,13 +165,13 @@
             width: 60,
             align: 'center'
           })
-        //   showColumn.push({
-        //     title: '操作',
-        //     key: 'action',
-        //     width: 150,
-        //     align: 'center',
-        //     render: this.renderOperate
-        //   })
+          // showColumn.push({
+          //   title: '操作',
+          //   key: 'action',
+          //   width: 150,
+          //   align: 'center',
+          //   render: this.renderOperate
+          // })
         }
         return showColumn
       }
