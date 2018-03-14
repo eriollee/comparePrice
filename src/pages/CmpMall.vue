@@ -64,7 +64,7 @@
                         name:'塞翁福汇山珍菌菇礼盒',
                         sales:'1000',
                         price:'12.00-24.00',
-                        imgUrl:'https://img.alicdn.com/imgextra/i4/2064590055/TB2U4H9hRfH8KJjy1XbXXbLdXXa_!!2064590055.jpg_430x430q90.jpg',
+                        imgUrl:'http://image6.mall.icbc.com.cn/image/10018469/1501218781097_3.jpg',
                         url:'http://mall.icbc.com.cn/products/pd_0000912336.jhtml',
                         isSKU:true,
                         SKU:

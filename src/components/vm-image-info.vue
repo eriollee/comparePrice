@@ -7,7 +7,7 @@
                             <img   :src="priceImg"    >
                         </a> 
                          <a  v-else   :href="dataInfo.detailList.mall.url" target="view_window">  
-                            <img  :src="dataInfo.detailList.mall.imgUrl"    >
+                             <img v-lazy="dataInfo.detailList.mall.imgUrl" >
                         </a> 
                         <!-- <Card  class="vm-info-img">
                         <p>标题：工e行-与爱同行 宝家丽 床宝星舰VH-01 高端杀菌除螨仪 一机两用 有效除螨吸尘</p>
@@ -15,7 +15,7 @@
                 </Col>
                  <Col span="16"  class="vm-info-img" >
                         <div>
-                            <p>标题：{{dataInfo.detailList.mall.title}}</p>
+                            <p>标题{{dataInfo.detailList.mall.SKU.priceList[0].price}}：{{dataInfo.detailList.mall.title}}</p>
                             <p>商品品牌：{{dataInfo.detailList.mall.brand}} </p>
                             <p>商品名称：{{dataInfo.detailList.mall.name}}</p>
                             <p>销量：{{dataInfo.detailList.mall.sales}}笔</p>
@@ -83,12 +83,12 @@
             this.$emit('transfer',value,price);
         },
         change_status: function(item,index,length,priceList){  // 筛选状态
-          //  console.log(length)
+            console.log(priceList)
             // 找到SKU选项所在索引 
             let itemIndex = item.typeValue.findIndex((value, index, arr) => {
                 return value.value ==  item.defaultValue
             });
-
+            //console.log(priceList);
             //找到SKU选项所在索引的json中的index
             //console.log(item.typeValue[itemIndex].index);
 
@@ -110,7 +110,9 @@
                 let priceIndex = priceList.findIndex((value, index, arr) => {
                     return value.index ==  this.priceIndexValue
                 });
-                this.price = priceList[priceIndex].price; 
+                this.price = priceList[priceIndex].price;
+            //    console.log(priceList); 
+             //   console.log(typeof priceList[priceIndex].price); 
                 if(priceList[priceIndex].imgUrl != undefined&& priceList[priceIndex].imgUrl != ""){
                     this.priceImg = priceList[priceIndex].imgUrl;
                 }else{
