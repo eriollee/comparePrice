@@ -4,7 +4,7 @@
                 <div class="search-bar">
                     <Form ref="formInline" :model="formInline" :rules="searchType" inline>
                         <FormItem prop="search">
-                            <Input type="text"  number v-model="formInline.search" :placeholder="placeholder" style="width: 300px"></Input>
+                            <Input type="text"  number   v-model="formInline.search" :placeholder="placeholder" style="width: 300px"></Input>
                         </FormItem>
                         <FormItem>
                             <Button type="ghost" @click="search('formInline')" ><i class="fa fa-search"></i></Button>
@@ -30,7 +30,11 @@
         comparePrice:{
             type: String,
             default: ''
-        }
+        },
+        compareModel:{
+            type: String,
+            default: ''
+        },
     },
     computed: {
         searchType: function () {
@@ -72,6 +76,10 @@
         },
 
 
+    },
+    mounted () {
+        this.formInline.search = this.compareModel;
+        this.search('formInline');
     },
     data: function () {
       return {

@@ -7,7 +7,8 @@
                             <img   :src="priceImg"    >
                         </a> 
                          <a  v-else   :href="dataInfo.detailList.mall.url" target="view_window">  
-                             <img v-lazy="dataInfo.detailList.mall.imgUrl" >
+                             <!-- <img  :src="'http://image6.mall.icbc.com.cn/'+'image/10018469/1501218781097_3.jpg'" > -->
+                             <img   v-lazy="'https://img14.360buyimg.com/n0/jfs/t10111/323/1631828106/201312/4bcc468c/59e43425N06086806.jpg'"/>
                         </a> 
                         <!-- <Card  class="vm-info-img">
                         <p>标题：工e行-与爱同行 宝家丽 床宝星舰VH-01 高端杀菌除螨仪 一机两用 有效除螨吸尘</p>
@@ -15,7 +16,7 @@
                 </Col>
                  <Col span="16"  class="vm-info-img" >
                         <div>
-                            <p>标题{{dataInfo.detailList.mall.SKU.priceList[0].price}}：{{dataInfo.detailList.mall.title}}</p>
+                            <p>标题：{{dataInfo.detailList.mall.title}}</p>
                             <p>商品品牌：{{dataInfo.detailList.mall.brand}} </p>
                             <p>商品名称：{{dataInfo.detailList.mall.name}}</p>
                             <p>销量：{{dataInfo.detailList.mall.sales}}笔</p>
@@ -39,7 +40,7 @@
                             </div>
                         </div>
                         <div>
-                            <VmSearch :comparePrice="price" ruleInline="compareRule" placeholder="请输入比价关键字.." @transfer="getSearchValue"></VmSearch>
+                            <VmSearch :comparePrice="price"  :compareModel="dataInfo.detailList.mall.model" ruleInline="compareRule" placeholder="请输入比价关键字.." @transfer="getSearchValue"></VmSearch>
                         </div>
                 </Col>
             </Card>
@@ -81,6 +82,7 @@
         getSearchValue:function(value,price){
             console.log(value+""+price);
             this.$emit('transfer',value,price);
+            
         },
         change_status: function(item,index,length,priceList){  // 筛选状态
             console.log(priceList)
@@ -123,6 +125,7 @@
 
     },
     mounted () {
+
     },
     data: function () {
       return {

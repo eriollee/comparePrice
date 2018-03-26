@@ -61,10 +61,16 @@
                 电商比价  
               </router-link>
           </Menu-item>
-          <Menu-item name="cmpAdv">
+          <!-- <Menu-item name="cmpAdv">
               <router-link to="/cmpAdv">
                 <i class="fa fa-bar-chart"></i>
                 广告比价
+              </router-link>
+          </Menu-item> -->
+          <Menu-item name="cmpBatch">
+              <router-link to="/cmpBatch">
+                <i class="fa fa-bar-chart"></i>
+                批量比价
               </router-link>
           </Menu-item>
            <Menu-item name="cmpShortcut">

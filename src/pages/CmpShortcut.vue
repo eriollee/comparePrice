@@ -5,7 +5,7 @@
         <VmShortcutTable title="请选择历史比价数据" type="edit"  :columns="dataInitColumns" :data="dataInitTable" @transfer="getCompareValue" ></VmShortcutTable>
       </div>
       <div class="basic-table vm-margin">
-        <VmShortcutTable title="最新比价结果" :columns="dataColumns" :data="dataTable"></VmShortcutTable>
+        <VmShortcutTable title="最新比价结果" v-show="dataTableShow" :columns="dataColumns" :data="dataTable"></VmShortcutTable>
       </div>
 
   </div>
@@ -34,16 +34,22 @@
              this.dataInitTable[i] = dataInit;
               
         }
-       
+       console.log(this.dataInitTable);
        
     },
     methods: {
       getCompareValue:function(value){
             console.log(value);
+            for(let i = 0;i<this.dataList.detailList.advList.length;i++){
+             let dataInit = {};//添加临时对象
+              console.log(this.dataList.detailList.advList[i]);          
+            }
+            this.dataTableShow = true;
       },
     },
     data () {
       return {
+        dataTableShow:false,
         dataColumns: [
           {
             id: '2.140710',
@@ -142,7 +148,129 @@
             sortable: true
           }
         ],
-        dataTable: [
+        dataList:{
+            code: 0, 
+            msg: "返回成功", 
+            detailList: {
+              advList:
+              [
+                {				
+                  cprID:"0000123",
+                  advID:"1312312",
+                  brand:"人民教育出版社",
+                  name:"塞翁福汇山珍菌菇礼盒",
+                  sales:1000,
+                  title:"Python源码剖析",
+                  hisPrice:"120.00",
+                  url:"https://item.jd.com/5396295.html",
+              otherList:
+              [
+              {
+              
+                  brand:"天猫",
+                  total:5,
+                  goodList:
+                  [
+                    {
+                      id:"4866934",
+                      title:"Python基础教程",
+                      sales:1000,
+                      price:"12.00",
+                      imgScore:"95",
+                      imgUrl:"http://img.alicdn.com/imgextra/i1/725677994/TB2E1a2XaAoBKNjSZSyXXaHAVXa_!!725677994.jpg_430x430q90.jpg",
+                      url:"http://chaoshi.detail.tmall.com/item.htm?spm=a3204.11139429.3183446685.1.40abaf00yKAsKL&id=40567573038"
+                    },
+                    {
+                      id:"3117898",
+                      title:"Python源码剖析",
+                      price:"12.00",
+                      imgScore:"95",
+                      imgUrl:"http://img.alicdn.com/imgextra/i1/725677994/TB2E1a2XaAoBKNjSZSyXXaHAVXa_!!725677994.jpg_430x430q90.jpg",
+                      url:"http://chaoshi.detail.tmall.com/item.htm?spm=a3204.11139429.3183446685.1.40abaf00yKAsKL&id=40567573038"
+                    },
+                    {
+                      id:"3948354",
+                      title:"Python学习手册",
+                      price:"12.00",
+                      imgScore:"95",
+                      imgUrl:"http://img.alicdn.com/imgextra/i1/725677994/TB2E1a2XaAoBKNjSZSyXXaHAVXa_!!725677994.jpg_430x430q90.jpg",
+                      url:"http://chaoshi.detail.tmall.com/item.htm?spm=a3204.11139429.3183446685.1.40abaf00yKAsKL&id=40567573038"
+                    },
+                    {
+                      id:"4866934",
+                      title:"Python基础教程",
+                      sales:1000,
+                      price:"12.00",
+                      imgScore:"95",
+                      imgUrl:"http://img.alicdn.com/imgextra/i1/725677994/TB2E1a2XaAoBKNjSZSyXXaHAVXa_!!725677994.jpg_430x430q90.jpg",
+                      url:"http://chaoshi.detail.tmall.com/item.htm?spm=a3204.11139429.3183446685.1.40abaf00yKAsKL&id=40567573038"
+                    },
+                    {
+                      id:"3117898",
+                      title:"Python源码剖析",
+                      price:"12.00",
+                      imgScore:"95",
+                      imgUrl:"http://img.alicdn.com/imgextra/i1/725677994/TB2E1a2XaAoBKNjSZSyXXaHAVXa_!!725677994.jpg_430x430q90.jpg",
+                      url:"http://chaoshi.detail.tmall.com/item.htm?spm=a3204.11139429.3183446685.1.40abaf00yKAsKL&id=40567573038"
+                    }
+                  ]
+              },
+              {
+                  brand:"京东",
+                  total:5,
+                  goodList:
+                  [
+                    {
+                      id:"4866934",
+                      title:"Python基础教程",
+                      sales:1000,
+                      price:"12.00",
+                      imgScore:"95",
+                      imgUrl:"http://img.alicdn.com/imgextra/i1/725677994/TB2E1a2XaAoBKNjSZSyXXaHAVXa_!!725677994.jpg_430x430q90.jpg",
+                      url:"http://chaoshi.detail.tmall.com/item.htm?spm=a3204.11139429.3183446685.1.40abaf00yKAsKL&id=40567573038"
+                    },
+                    {
+                      id:"3117898",
+                      title:"Python源码剖析",
+                      price:"12.00",
+                      imgScore:"95",
+                      imgUrl:"http://img.alicdn.com/imgextra/i1/725677994/TB2E1a2XaAoBKNjSZSyXXaHAVXa_!!725677994.jpg_430x430q90.jpg",
+                      url:"http://chaoshi.detail.tmall.com/item.htm?spm=a3204.11139429.3183446685.1.40abaf00yKAsKL&id=40567573038"
+                    },
+                    {
+                      id:"3948354",
+                      title:"Python学习手册",
+                      price:"12.00",
+                      imgScore:"95",
+                      imgUrl:"http://img.alicdn.com/imgextra/i1/725677994/TB2E1a2XaAoBKNjSZSyXXaHAVXa_!!725677994.jpg_430x430q90.jpg",
+                      url:"http://chaoshi.detail.tmall.com/item.htm?spm=a3204.11139429.3183446685.1.40abaf00yKAsKL&id=40567573038"
+                    },
+                    {
+                      id:"4866934",
+                      title:"Python基础教程",
+                      sales:1000,
+                      price:"12.00",
+                      imgScore:"95",
+                      imgUrl:"http://img.alicdn.com/imgextra/i1/725677994/TB2E1a2XaAoBKNjSZSyXXaHAVXa_!!725677994.jpg_430x430q90.jpg",
+                      url:"http://chaoshi.detail.tmall.com/item.htm?spm=a3204.11139429.3183446685.1.40abaf00yKAsKL&id=40567573038"
+                    },
+                    {
+                      id:"3117898",
+                      title:"Python源码剖析",
+                      price:"12.00",
+                      imgScore:"95",
+                      imgUrl:"http://img.alicdn.com/imgextra/i1/725677994/TB2E1a2XaAoBKNjSZSyXXaHAVXa_!!725677994.jpg_430x430q90.jpg",
+                      url:"http://chaoshi.detail.tmall.com/item.htm?spm=a3204.11139429.3183446685.1.40abaf00yKAsKL&id=40567573038"
+                    }
+                  ]
+              },
+              ]
+                }
+              ]
+            }
+          },
+        dataTable:[],
+        dataTableSample: [
           {
             id: '65416843154',
             name: '王小明',

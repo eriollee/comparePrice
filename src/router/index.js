@@ -15,6 +15,8 @@ import Loading from '@/pages/Loading'
 import CmpMall from '@/pages/CmpMall'
 import CmpAdv from '@/pages/CmpAdv'
 import CmpShortcut from '@/pages/CmpShortcut'
+import CmpBatch from '@/pages/CmpBatch'
+
 
 Vue.use(Router)
 
@@ -78,6 +80,11 @@ export default new Router({
           path: 'cmpShortcut',
           name: 'CmpShortcut',
           component: CmpShortcut
+        },
+        {
+          path: 'cmpBatch',
+          name: 'CmpBatch',
+          component: CmpBatch
         }
       ]
     },

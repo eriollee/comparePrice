@@ -5,15 +5,12 @@
         </Row>
         <Row class="image-list"  >
             <transition name="fade">
-                <VmImageInfo :dataInfo="dataInfoTable" v-if="imageInfoShow" @transfer="getCompareValue" ></VmImageInfo>
+                <VmImageInfo :dataInfo="dataInfoTable"  v-if="imageInfoShow" @transfer="getCompareValue" ></VmImageInfo>
             </transition>
         </Row>
             <transition name="slide-fade">
                 <VmImageMall :comparePrice="comparePrice" :compareList="compareList" v-show="imageMallShow"></VmImageMall>
-                </transition>
-            </Col>
-      
-      
+            </transition>
     </div>
 </template>
 
@@ -61,10 +58,11 @@
                         id:'9000158140',
                         title:'塞翁福汇山珍菌菇礼盒swfjg-5',
                         brand:'塞翁福',
+                        model:'塞翁福汇1  山珍2  菌菇礼盒3',
                         name:'塞翁福汇山珍菌菇礼盒',
                         sales:'1000',
                         price:'12.00-24.00',
-                        imgUrl:'http://image6.mall.icbc.com.cn/image/10018469/1501218781097_3.jpg',
+                        imgUrl:'https://image6.mall.icbc.com.cn/image/10007125/1519571735607_3.jpg',
                         url:'http://mall.icbc.com.cn/products/pd_0000912336.jhtml',
                         isSKU:true,
                         SKU:
