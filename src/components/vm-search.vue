@@ -78,8 +78,12 @@
 
     },
     mounted () {
-        this.formInline.search = this.compareModel;
-        this.search('formInline');
+            if(this.compareModel != "" && this.compareModel !=undefined){
+                 this.formInline.search = this.compareModel;
+                this.search('formInline');
+            }
+           
+        
     },
     data: function () {
       return {
