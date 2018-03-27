@@ -20,14 +20,28 @@
          <Row type="flex" justify="center"  class="panel-body"  v-if="buttonShow">
             <Col span="24">
                 <Card >
-                    <Button type="primary" size="large" @click="setFreshShow" :loading="loading">
-                        <span v-if="!loading" >点击刷新</span>
-                        <span v-else>刷新中...</span>
-                    </Button>
-                    <Button type="success" size="large"  @click="downLoad">下载</Button>
+                    <Row type="flex" justify="center"  class="panel-body"   >
+                        <Col span="12">
+                        <Row type="flex" justify="center"  class="panel-body"   >
+                             <Col span="12">
+                                <Button type="primary" size="large" @click="setFreshShow" :loading="loading">
+                                    <span v-if="!loading" >点击刷新</span>
+                                    <span v-else>刷新中...</span>
+                                </Button>
+                             </Col>
+                             <Col span="12">
+                                 <Button type="success" size="large"  @click="downLoad">下载</Button>
+                            </Col>
+                        </Row>
+                        </Col>
+                        <Col span="12">
+                        <Alert show-icon>温馨提示:点击刷新后的进度完成100%后可继续上传文件</Alert>
+                        </Col>
+                    </Row>
                 </Card>
                 <transition name="slide-fade">
                     <Card v-if="freshShow">
+                        <span>上传进度：</span>
                                 <i-circle :percent="percent">
                                     <span style="font-size:24px">{{ percent }}%</span>
                                 </i-circle>
@@ -51,6 +65,9 @@
             setFreshShow: function() {
                 this.freshShow = true;
                 this.loading = true;
+                if(this.percent == 100){
+                    this.spinShow = true;
+                }
                 setTimeout(() => { 
                     this.freshShow = false;
                     this.loading = false;
