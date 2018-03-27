@@ -10,7 +10,7 @@
                             :on-error="handleError"  >
                             <div style="padding: 20px 0">
                                 <Icon type="ios-cloud-upload" size="52" style="color: #3399ff"></Icon>
-                                <p>请点击或拖拽此处上传文件</p>
+                                <p>请点击或拖拽至此处上传文件</p>
                             </div>                           
                         </Upload>
                         <Spin size="large" fix v-if="spinShow"></Spin>  
@@ -22,7 +22,6 @@
                 <Card >
                     <Row type="flex" justify="center"  class="panel-body"   >
                         <Col span="12">
-                        <Row type="flex" justify="center"  class="panel-body"   >
                              <Col span="12">
                                 <Button type="primary" size="large" @click="setFreshShow" :loading="loading">
                                     <span v-if="!loading" >点击刷新</span>
@@ -32,7 +31,6 @@
                              <Col span="12">
                                  <Button type="success" size="large"  @click="downLoad">下载</Button>
                             </Col>
-                        </Row>
                         </Col>
                         <Col span="12">
                         <Alert show-icon>温馨提示:点击刷新后的进度完成100%后可继续上传文件</Alert>
@@ -66,7 +64,7 @@
                 this.freshShow = true;
                 this.loading = true;
                 if(this.percent == 100){
-                    this.spinShow = true;
+                    this.spinShow = false;
                 }
                 setTimeout(() => { 
                     this.freshShow = false;
@@ -83,7 +81,7 @@
             return {
                 spinShow: false,
                 buttonShow:false,
-                percent:75,
+                percent:100,
                 freshShow:false,
                 loading:false
             }
