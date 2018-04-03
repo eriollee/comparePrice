@@ -6,6 +6,7 @@
                    <Upload
                             type="drag"
                             action="//jsonplaceholder.typicode.com/posts/"
+                            name ="batchFile"
                             :on-success="handleSuccess" 
                             :on-error="handleError"  >
                             <div style="padding: 20px 0">
